@@ -404,7 +404,7 @@ void draw_bmp(int x, int y, int width, int height, const unsigned char BMP[], in
   ST7567_display();
 }
 
-void ST7567_set_memory(int x, int y, int width, int height, uint8_t* data, int len) {
+void set_memory(int x, int y, int width, int height, uint8_t* data, int len) {
   int _i_offset = 0, _j_offset = 0;
   for (int i = 0; i != len; i++) {
     for (int j = 0; j != 8; j++) {
