@@ -403,3 +403,18 @@ void draw_bmp(int x, int y, int width, int height, const unsigned char BMP[], in
   }
   ST7567_display();
 }
+
+void ST7567_set_memory(int x, int y, int width, int height, uint8_t* data, int len) {
+  int _i_offset = 0, _j_offset = 0;
+  for (int i = 0; i != len; i++) {
+    for (int j = 0; j != 8; j++) {
+      if (_j_offset == width) {
+        _i_offset++;
+        _j_offset = 0;
+      }
+      ST7567_set_pixel(x + _j_offset, y + _i_offset, ((data[i] << j) & 0x80) == 0x80);
+      _j_offset++;
+    }
+  }
+  ST7567_display();
+}
